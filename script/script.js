@@ -120,7 +120,7 @@ function handleClick(e) {
     
     let solver = new Solver()
     let clonedCells = solver.translateCells(cells);
-
+    cell.removeEventListener('click', handleClick) 
     
     solver.minmax(clonedCells,true,false,1,difficultyLevel)
     let index = solver.finalResultIndex
@@ -129,7 +129,7 @@ function handleClick(e) {
     clonedCells = solver.translateCells(cells); 
     
     checkEnd(O_MARK) 
-    
+    cells[index].removeEventListener('click', handleClick) 
 }
 
 
