@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+:root {
+    --cell-size: 100px;
+    --border-curvature:.9em;
+}
+
+body {
+    background: #F3904F; 
+    background: -webkit-linear-gradient(to right, #3B4371, #F3904F);
+    background: linear-gradient(to right, #3B4371, #F3904F);
+
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+} */
+
+h1#h-title {
+    font-size: 30px;
+    font-style: bold;
+    color: white;
+}
+
+#game-count {
+    position: fixed;
+    top: 150px;
+
+}
+
+.game-area {
+    margin: 60px 0px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;  
+}
+.game-area-item{
+    margin: 30px 0px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+
+}
+
+.cell {
+    background-color: white;
+    border: 3px solid #111111;
+    width: calc(var(--cell-size));
+    height: calc(var(--cell-size));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/*Remove extra border marks */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: 3px solid #ababab;
+}
+
+.cell:nth-child(3n) {
+    border-right: 3px solid #ababab;
+}
+
+.cell:nth-child(n+7) {
+    border-bottom: 3px solid #ababab;
+}
+
+.cell:nth-child(3n-2) {
+    border-left: 3px solid #ababab;
+}
+
+/* Nice Curve Effect */
+.cell:first-child{
+    border-top-left-radius: var(--border-curvature);
+}
+.cell:nth-child(3){
+    border-top-right-radius: var(--border-curvature);
+}
+.cell:nth-child(7){
+    border-bottom-left-radius: var(--border-curvature);
+}
+.cell:nth-child(9){
+    border-bottom-right-radius: var(--border-curvature);  
+}
+
+/* X Cells*/
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    position: absolute;
+    content: '';
+    background-color: #111111;
+    width: calc(var(--cell-size)*.1);
+    height: calc(var(--cell-size)*.9);
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg);
+}
+
+/*O Cells*/
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+    position: absolute;
+}
+
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+    content: '';
+    background-color: #111111;
+    width: calc(var(--cell-size)*.8);
+    height: calc(var(--cell-size)*.8);
+    border-radius: 50%;
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
+    content: '';
+    background-color: white;
+    width: calc(var(--cell-size)*.6);
+    height: calc(var(--cell-size)*.6);
+    border-radius: 50%;
+}
+
+
+/* Cell on Hover Styles */
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover::before {
+    background-color: rgb(162, 165, 167);
+}
+
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
+/* Player Score Areas */
+
+.player-1-area,
+.board,
+.player-2-area {
+    margin: 0px 15px 0px;
+    padding: 0px 10px 0px;
+}
+
+.player-1-area,
+.player-2-area {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+#new-game,#restart,#mode {
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: .8em;
+    font-size: larger;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#new-game:focus{
+    outline: blue auto 5px; 
+}
+
+/* Game Result Area */
+
+.result-area {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+    background: #F3904F; 
+    background: -webkit-linear-gradient(to right, #3B4371, #F3904F);
+    background: linear-gradient(to right, #3B4371, #F3904F);
+   
+}
+
+
+#current-result-text {
+    font-size: 20px;
+}
+
+#result-message-text {
+    color: white;
+    font-size: 50px;
+}
+
+button#restart {
+    padding: 10px 30px;
+    font-size: larger;
+    font-weight: bold;
+    border-color: #6553b8;
+}
+
+button#restart:hover {
+    color: white;
+    border-color: white;
+    background-color: #6553b8;
+}
+
+/* Icons */
+#draw,
+#win {
+    font-size: 50px;
+    color: #fff;
+    display: none;
+}
+
+.result-area.show,
+#draw.show,
+#win.show {
+    display: flex;
+}
+
+
+@media screen and (min-width: 300px) {
+    .game-area {
+        flex-direction: column; 
+    }
+    .game-area-item{
+        margin: 10px 0px;
+    }    
+    .player-score{
+        font-size: 30px;
+    }
+    
+    .player-1-area,
+    .player-2-area {
+        font-size: 25px;
+    }
+    
+    #result-message-text {
+        font-size: 30px;
+    }
+    #result-img{
+        width:70%;
+        height: 30%;
+        border-radius: 0.9em;
+        margin: 10px 0px;
+    }
+    .game-name{
+        color:#fff;
+        font-size:30px;
+    }
+    
+}
+
+@media screen and (min-width: 500px) {
+    
+    .game-area {
+        flex-direction: column; 
+    }
+    
+    #result-message-text {
+        font-size: 50px;
+    }
+    
+   
+}
+
+/*Responsiveness*/
+
+
+@media screen and (min-width: 700px) {
+    .game-area {
+        flex-direction: row; 
+    }
+    header {
+        height: 8rem;
+    }
+
+    .nav-brand {
+        width: 3.5rem;
+    }
+
+    .nav-list {
+        width: initial;
+        height: initial;
+        background-color: transparent;
+        position: initial;
+        top: initial;
+        right: initial;
+        flex-direction: row;
+        transition: initial;
+    }
+
+    .menu-icons {
+        display: none;
+    }
+
+    .nav-item {
+        margin: 0 2.5rem;
+    }
+
+    .nav-link,
+    .current {
+        color: #fafafa;
+        position: relative;
+        font-size: 1.8rem;
+    }
+
+    .nav-link::before,
+    .current::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.5rem;
+        background-color: #eb648c;
+        width: 100%;
+        height: 2px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 650ms;
+    }
+
+    .current::before {
+        transform: scaleX(1);
+    }
+
+    .nav-link:hover::before {
+        transform: scaleX(1);
+    }
+
+    .game-name{
+        color:#fff;
+        font-size:50px;
+    }
+
+}
+
+
+

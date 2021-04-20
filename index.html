@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Home </title>
+    <style>
+        
+        .result-area {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            align-items: center;
+            justify-items: center;
+            align-content: center;
+            justify-content: center;
+            background: #F3904F; 
+            background: -webkit-linear-gradient(to right, #3B4371, #F3904F);
+            background: linear-gradient(to right, #3B4371, #F3904F);
+
+        }
+
+        #result-message-text {
+            color: white;
+            font-size: 100px;
+        }
+
+        img#result-img{
+            margin-top: 30px;
+            width: 80%;
+            height: 30%;
+            border-radius: 0.9rem;
+        }
+
+    
+        .links{
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            background-color: #fff;
+            padding: 10px 30px;
+            border-radius: 0.9rem;
+            margin: 10px 10px;
+        }
+        .links:hover{
+            background-color: rgb(228, 228, 228);
+        }
+
+        @media screen and (min-width: 350px) {
+            #result-message-text {
+                font-size: 60px;
+            }
+            .options{
+                display: flex;
+                flex-direction: column;
+            }
+            button#restart {
+                margin-top: 20px;
+                font-size: large;
+            }
+        }
+        @media screen and (min-width:700px) {
+            #result-message-text {
+                font-size: 100px;
+            }
+            .options{
+                flex-direction: row;
+            }
+            button#restart {
+                margin: 30px 20px;
+                font-size: larger; 
+            }
+            img#result-img{
+                margin: 30px 0px;
+                width: 30%;
+            }
+            
+        } 
+    </style>
+</head>
+<body>
+   <div class="result-area " id="result-area">
+        <div id="result-message-text">Tic Tac Toe</div>
+        <img id="result-img" src="./images//micheile-henderson-JHQJetBBw9s-unsplash.jpg" alt="draw"  >
+        <div class="options">
+            <a href="./game.html" class="links">Play Now</a>
+            <a href="./about.html" class="links">About</a>
+        </div>
+    </div>
+</body>
+</html>
