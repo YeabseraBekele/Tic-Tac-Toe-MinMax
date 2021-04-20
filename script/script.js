@@ -124,12 +124,15 @@ function handleClick(e) {
     
     solver.minmax(clonedCells,true,false,1,difficultyLevel)
     let index = solver.finalResultIndex
-    cells[index].classList.add(O_MARK);
+    // code for the delay 
+    setTimeout(()=>{
+        cells[index].classList.add(O_MARK);
     
-    clonedCells = solver.translateCells(cells); 
-    
-    checkEnd(O_MARK) 
-    cells[index].removeEventListener('click', handleClick) 
+        clonedCells = solver.translateCells(cells); 
+        
+        checkEnd(O_MARK) 
+        cells[index].removeEventListener('click', handleClick) 
+    },500)
 }
 
 
